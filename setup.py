@@ -31,6 +31,6 @@ setup(
         'Programming Language :: Python',
         'Intended Audience :: System Administrators',
     ],
-    install_requires=['python-keystoneclient == 1.7.2',
-                      'python-glanceclient == 1.2.0']
+    install_requires=['python-keystoneclient == 3.5.1',
+                      'python-glanceclient == 2.5.0']
 )
