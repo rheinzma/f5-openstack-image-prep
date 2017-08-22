@@ -25,7 +25,7 @@ CONTAINERFORMAT = 'bare'
 DISKFORMAT = 'qcow2'
 PATCHTOOL = '/home/imageprep/f5-openstack-image-prep/bin/patch-image.sh'
 STARTUPSCRIPTPKG = \
-    '/home/imageprep/f5-openstack-image-prep/lib/f5_image_prep/startup.tar'
+    '/home/imageprep/f5-openstack-image-prep/lib/f5_image_prep/'
 WORKDIR = os.environ['HOME']
 
 

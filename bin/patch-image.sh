@@ -78,8 +78,8 @@ function validate_packages() {
 }
 
 function validate_inputs() {
-    if ! [ -f $startup_pkg ]; then
-        echo "startup file $startup_pkg does not exist"
+    if ! [ -d $startup_pkg ]; then
+        echo "startup directory $startup_pkg does not exist"
         badusage
     fi
 
@@ -123,8 +123,16 @@ function get_dev() {
 }
 
 function inject_files() {
-    if [ -f $startup_pkg ]; then
-        tar -xf $startup_pkg -C /mnt/bigip-config/
+    if [ -d $startup_pkg ]; then
+        pushd $startup_pkg
+        sha256sum startup os-functions/* > sourceshas
+        tar -vcf - ./* | tar -xf - -C /mnt/bigip-config/
+        cp -a startup /mnt/bigip-config/startup_from_cp
+        cp startup /mnt/bigip-config/startup_from_cp_noa
+        sha256sum /mnt/bigip-config/startup /mnt/bigip-config/os-functions/* > /mnt/bigip-config/posttarsums
+        ls -la /mnt/bigip-config
+        ls -la ./*
+        popd
     fi
 
     if $firstboot_file; then
