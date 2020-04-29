@@ -119,7 +119,7 @@ function validate_inputs() {
 }
 
 function get_dev() {
-    ls -l /dev/vg-db-hda | grep $1 | cut -d'>' -f2 | cut -d'/' -f2-
+    readlink -f /dev/vg-db-*da/$1 | cut -d'/' -f2 -
 }
 
 function inject_files() {

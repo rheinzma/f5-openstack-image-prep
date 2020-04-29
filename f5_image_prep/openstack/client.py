@@ -16,7 +16,7 @@
 import re
 
 import glanceclient.v1.client as gclient
-import keystoneclient.v2_0.client as ksclient
+import keystoneclient.v3.client as ksclient
 
 
 class AuthURLNotSet(KeyError):
