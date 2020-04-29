@@ -119,7 +119,7 @@ function validate_inputs() {
 }
 
 function get_dev() {
-    readlink -f /dev/vg-db-*da/$1 | cut -d'/' -f2 -
+    readlink -f /dev/vg-db-*da/$1
 }
 
 function inject_files() {
@@ -135,12 +135,12 @@ function inject_files() {
     fi
 
     if [ -n "$baseisofile" ]; then
-        mount /dev/`get_dev dat.share` /mnt/bigip-shared
+        mount `get_dev dat.share` /mnt/bigip-shared
         cp $baseisofile /mnt/bigip-shared/images
     fi
 
     if [ -n "$hotfixisofile" ]; then
-        mount /dev/`get_dev dat.share` /mnt/bigip-shared
+        mount `get_dev dat.share` /mnt/bigip-shared
         cp $hotfixisofile /mnt/bigip-shared/images
     fi
 }
@@ -332,7 +332,7 @@ sleep 15
 umount /mnt/bigip-config || [ $? -eq 1 ]
 umount /mnt/bigip-shared || [ $? -eq 1 ]
 
-mount /dev/`get_dev set.1._config` /mnt/bigip-config
+mount `get_dev set.1._config` /mnt/bigip-config
 
 inject_files
 
